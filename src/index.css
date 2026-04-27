@@ -296,7 +296,7 @@ body {
 
 /* ─── Hero welcome text position ─── */
 .hero-welcome {
-  top: 52%;
+  top: 36%;
   transform: translateY(-50%);
 }
 
