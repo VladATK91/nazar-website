@@ -454,7 +454,7 @@ export default function Menu() {
       </section>
 
       {/* ── Tab Navigation ── */}
-      <section className="sticky top-20 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-gold-border">
+      <section className="sticky top-16 md:top-20 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-gold-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex overflow-x-auto gap-0 py-4" style={{ scrollbarWidth: 'none' }}>
             {tabs.map((tab) => (
