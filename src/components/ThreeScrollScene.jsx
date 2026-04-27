@@ -100,17 +100,9 @@ export default function ThreeScrollScene() {
       if (!img?.complete || img.naturalWidth === 0) return
 
       const pw = canvas.width, ph = canvas.height
-      // Portrait mobile: contain (fit to width) — shows full image, no pixelation
-      // Landscape / desktop: cover — fills the screen edge-to-edge
-      const portrait = ph > pw
-      const scale = portrait
-        ? Math.min(pw / img.naturalWidth, ph / img.naturalHeight)
-        : Math.max(pw / img.naturalWidth, ph / img.naturalHeight)
+      const scale = Math.max(pw / img.naturalWidth, ph / img.naturalHeight)
       const ox = (pw - img.naturalWidth  * scale) / 2
-      // On portrait, sit the image slightly above centre so it clears the bottom bar
-      const oy = portrait
-        ? (ph - img.naturalHeight * scale) * 0.35
-        : (ph - img.naturalHeight * scale) / 2
+      const oy = (ph - img.naturalHeight * scale) / 2
       ctx.clearRect(0, 0, pw, ph)
       ctx.drawImage(img, ox, oy, img.naturalWidth * scale, img.naturalHeight * scale)
       drawnRef.current = t
