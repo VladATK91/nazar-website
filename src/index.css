@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: #D4AF7A; border-radius: 2px; }
+
+/* ─── Base ─── */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0A0A0A;
+}
+
+body {
+  background-color: #0A0A0A;
+  color: #F5F3EE;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Typography ─── */
+.font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+.heading-xl {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.heading-lg {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.heading-md {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.label-gold {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #D4AF7A;
+}
+
+/* ─── Gold gradient text ─── */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C9A96E 0%, #E8D5AC 40%, #D4AF7A 60%, #B8924A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+}
+
+/* ─── Noise/grain overlay ─── */
+.grain-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+/* ─── Gold divider ─── */
+.gold-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #D4AF7A, transparent);
+}
+
+.gold-line-full {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,122,0.4), transparent);
+}
+
+/* ─── Buttons ─── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  background: linear-gradient(135deg, #C9A96E, #D4AF7A, #E8D5AC);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #E8D5AC, #D4AF7A);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.btn-gold:hover::before { opacity: 1; }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(212,175,122,0.25); }
+.btn-gold span { position: relative; z-index: 1; }
+
+.btn-outline-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #D4AF7A;
+  background: transparent;
+  border: 1px solid rgba(212,175,122,0.5);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-outline-gold:hover {
+  background: rgba(212,175,122,0.08);
+  border-color: #D4AF7A;
+  transform: translateY(-2px);
+}
+
+/* ─── Card styles ─── */
+.card-dark {
+  background: #111111;
+  border: 1px solid rgba(212,175,122,0.12);
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-dark:hover {
+  border-color: rgba(212,175,122,0.35);
+  transform: translateY(-4px);
+}
+
+/* ─── Section spacing ─── */
+.section-py { padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+
+/* ─── Nav link hover ─── */
+.nav-link {
+  position: relative;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(245,243,238,0.7);
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #D4AF7A;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover, .nav-link.active { color: #D4AF7A; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+/* ─── Menu tab pills ─── */
+.menu-tab {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(212,175,122,0.6);
+  border: 1px solid rgba(212,175,122,0.15);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: transparent;
+}
+
+.menu-tab:hover { color: #D4AF7A; border-color: rgba(212,175,122,0.4); }
+.menu-tab.active {
+  color: #0A0A0A;
+  background: #D4AF7A;
+  border-color: #D4AF7A;
+}
+
+/* ─── Parallax container ─── */
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Input/form styles ─── */
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,175,122,0.15);
+  color: #F5F3EE;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.form-input:focus { border-color: rgba(212,175,122,0.5); background: rgba(255,255,255,0.05); }
+.form-input::placeholder { color: rgba(154,149,136,0.5); }
+
+.form-select {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,175,122,0.15);
+  color: #F5F3EE;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+}
+
+.form-select:focus { border-color: rgba(212,175,122,0.5); }
+.form-select option { background: #111111; color: #F5F3EE; }
+
+/* ─── Star rating ─── */
+.star-fill { color: #D4AF7A; }
+
+/* ─── Mobile touch & performance ─── */
+@media (max-width: 768px) {
+  /* Larger tap targets */
+  .btn-gold, .btn-outline-gold {
+    padding: 1rem 1.75rem;
+    min-height: 48px;
+  }
+
+  /* Prevent double-tap zoom on buttons/links */
+  a, button {
+    touch-action: manipulation;
+  }
+
+  /* Tighter section spacing on mobile */
+  .section-py {
+    padding-top: clamp(3rem, 10vw, 5rem);
+    padding-bottom: clamp(3rem, 10vw, 5rem);
+  }
+}
+
+/* Momentum scroll on iOS for horizontal carousels */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Image overlay gradient ─── */
+.img-overlay {
+  background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,0.7) 70%, rgba(10,10,10,0.95) 100%);
+}
+
+/* ─── Hero welcome text position ─── */
+.hero-welcome {
+  top: 52%;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 1024px) {
+  .hero-welcome {
+    top: 36%;
+    transform: translateY(-50%);
+  }
+}
+
+/* ─── Page header clearance (accounts for fixed nav) ─── */
+.page-header-pt {
+  padding-top: clamp(6rem, 16vw, 10rem);
+}
+
+/* ─── Section label line ─── */
+.section-label-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-label-group::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(212,175,122,0.3), transparent);
+}
+
+/* ─── Scroll progress bar ─── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #B8924A, #D4AF7A, #E8D5AC);
+  transform-origin: left;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* ─── Selection colour ─── */
+::selection {
+  background: rgba(212,175,122,0.25);
+  color: #F5F3EE;
+}
+
+/* ─── Smooth image loading ─── */
+img {
+  transition: opacity 0.3s ease;
+}
+
+/* ─── Focus visible ─── */
+:focus-visible {
+  outline: 1px solid rgba(212,175,122,0.6);
+  outline-offset: 3px;
+}
+
+/* ─── No scrollbar on horizontal containers ─── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
