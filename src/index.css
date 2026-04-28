@@ -19,14 +19,16 @@
 html {
   scroll-behavior: smooth;
   background-color: #0A0A0A;
+  /* Prevent iOS rubber-band overscroll from exposing content behind browser chrome */
+  overscroll-behavior: none;
 }
 
 body {
   background-color: #0A0A0A;
   color: #F5F3EE;
   font-family: 'Montserrat', system-ui, sans-serif;
-  /* overflow-x: clip instead of hidden — hidden breaks position:fixed on iOS Safari */
   overflow-x: clip;
+  overscroll-behavior: none;
 }
 
 /* ─── Typography ─── */
